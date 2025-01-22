@@ -1,0 +1,128 @@
+/* Body styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  /* Ensure the background is centered */
+  background: url('pexels-cotelo-25853495.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between; /* This will push the logo to the left and the buttons to the right */
+  align-items: center;
+}
+
+/* Overlay background with semi-transparent dark background */
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between; /* Aligns logo to left and menu to right */
+  align-items: center;
+  padding: 0 20px; /* Adds padding on both sides */
+}
+
+/* Logo section - on the left */
+.logo {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+  color: white;
+  text-align: left;
+}
+
+.logo img {
+  width: 200px; /* Adjust size of the logo image */
+  height: auto;
+}
+
+.logo p {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin: 5px 0 0;
+}
+
+/* Title section - centered in the screen */
+.title {
+  color: white;
+  text-align: center;
+  flex: 1; /* This will allow the title to be centered */
+}
+
+.title h1 {
+  font-size: 3rem;
+  margin: 0;
+  animation: fadeInTitle 1s ease-out;
+}
+
+.title p {
+  font-size: 1.2rem;
+  margin: 10px 0 0;
+}
+
+/* Keyframe for title fade-in effect */
+@keyframes fadeInTitle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Menu section - on the right */
+.menu {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu button {
+  display: block;
+  width: 220px;
+  padding: 15px;
+  margin: 10px auto;
+  font-size: 1.2rem;
+  color: white;
+  background: #ff5722;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+/* Hover effect for buttons */
+.menu button:hover {
+  background: #e64a19;
+  transform: scale(1.05);
+}
+
+/* Active effect for buttons (pressed effect) */
+.menu button:active {
+  transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menu button {
+    width: 180px;
+    font-size: 1rem;
+  }
+
+  .title h1 {
+    font-size: 2.5rem;
+  }
+
+  .logo h1 {
+    font-size: 2rem;
+  }
+}

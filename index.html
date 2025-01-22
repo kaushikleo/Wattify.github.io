@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamified Bicycle Loader</title>
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <div class="background">
+    <div class="loader-container">
+      <div class="bicycle-icon"></div>
+      <div class="loading-bar">
+        <div class="progress-bar"></div>
+      </div>
+      <p class="loading-text">Loading... <span id="loading-percentage">1%</span></p>
+    </div>
+  </div>
+
+  <!-- Popup Modal -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-content">
+      <h2>🚴 Gear Up for Adventure!</h2>
+      <p>Congratulations! You're all set. Let the race to victory begin!</p>
+      <button id="close-popup">Start the Game</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

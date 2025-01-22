@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamified Fitness Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #ff4081, #ffab40);
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 100%;
+            margin: auto;
+        }
+        .dynamic-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff5722;
+        }
+        .nav-tabs .nav-link {
+            font-size: 1.2rem;
+            padding: 12px;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-tabs .nav-link.active {
+            border-bottom: 2px solid #ff4081;
+        }
+        .tab-content {
+            overflow-x: auto;
+        }
+        @media (max-width: 768px) {
+            .card-body {
+                padding: 15px;
+            }
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            .dynamic-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container d-flex align-items-center mb-3">
+        <div class="profile-photo me-2">
+            <img src="profile picture.jpg" alt="Profile Photo" class="img-fluid rounded-circle" style="width: 50px; height: 50px;">
+        </div>
+        <div class="profile-text">
+            <h5 class="m-0">Hi, User!</h5>
+        </div>
+    </div>
+    </div>
+
+    <!-- Rest of the dashboard code -->
+</div>
+ 
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Gamified Dashboard</a>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Metrics -->
+            <div class="col-12 col-md-3">
+                <div class="card bg-gradient text-white mb-3" style="background-color: #f06292;">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-bolt"></i> Power</h5>
+                        <p class="dynamic-number" id="power">0</p>
+                    </div>
+                </div>
+                <div class="card bg-gradient text-white mb-3" style="background-color: #64b5f6;">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-bolt"></i> Energy</h5>
+                        <p class="dynamic-number" id="energy">0</p>
+                    </div>
+                </div>
+                <div class="card bg-gradient text-white mb-3" style="background-color: #81c784;">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-fire"></i> Calories</h5>
+                        <p class="dynamic-number" id="calories">0</p>
+                    </div>
+                </div>
+                <div class="card bg-gradient text-dark mb-3" style="background-color: #ffd54f;">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-shoe-prints"></i> Distance</h5>
+                        <p class="dynamic-number" id="distance">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts and Table -->
+            <div class="col-12 col-md-9">
+                <div class="row">
+                    <!-- Line Chart -->
+                    <div class="col-12 col-md-6 mb-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Workout Progress</h5>
+                                <div class="chart-container">
+                                    <canvas id="progressChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doughnut Chart -->
+                    <div class="col-12 col-md-6 mb-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Calories Burned</h5>
+                                <div class="chart-container">
+                                    <canvas id="caloriesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#weekly-tab" onclick="updateCharts('weekly')">Weekly</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#monthly-tab" onclick="updateCharts('monthly')">Monthly</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#yearly-tab" onclick="updateCharts('yearly')">Yearly</a>
+                    </li>
+                </ul>
+
+                <!-- Table -->
+                <div class="tab-content mt-3">
+                    <!-- Weekly Tab -->
+                    <div id="weekly-tab" class="tab-pane fade show active">
+                        <table class="table table-striped table-hover">
+                            <thead style='background-color:#ffeb3b;'>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Activity</th>
+                                    <th>Calories</th>
+                                    <th>Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody id="weekly-table"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Monthly Tab -->
+                    <div id="monthly-tab" class="tab-pane fade">
+                        <table class="table table-striped table-hover">
+                            <thead style='background-color:#ffeb3b;'>
+                                <tr>
+                                    <th>Week</th>
+                                    <th>Calories</th>
+                                    <th>Power</th>
+                                    <th>Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody id="monthly-table"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Yearly Tab -->
+                    <div id="yearly-tab" class='tab-pane fade'>
+                        <table class='table table-striped table-hover'>
+                            <thead style='background-color:#ffeb3b;'>
+                                <tr><th>Month</th><th>Calories</th><th>Power</th><th>Duration</th></tr></thead><tbody id='yearly-table'></tbody></table></div></div></body><script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script><script src='https://cdn.jsdelivr.net/npm/chart.js'></script><script>
+// JavaScript code remains unchanged
+let weeklyData = [];
+let monthlyData = [];
+let yearlyData = [];
+let lineChart, doughnutChart;
+
+// Generate random data for tables and charts
+const generateRandomData = (count, type) => {
+    const activities = ['Running', 'Cycling', 'Walking'];
+    const data = [];
+
+    let totalCalories = 0;
+    let targetCalories = Math.floor(Math.random()*(3550-3500+1))+3500;
+
+    for (let i = 1; i <= count; i++) {
+        const activity = activities[Math.floor(Math.random() * activities.length)];
+        const duration = Math.floor(Math.random() * 31) + 30;
+
+        let caloriesBurned = 0;
+        let powerGenerated = 0;
+
+        switch (activity) {
+            case 'Running':
+                caloriesBurned = (duration * 12).toFixed(2);
+                powerGenerated = (duration * 1.5).toFixed(2);
+                break;
+            case 'Cycling':
+                caloriesBurned = (duration * 10).toFixed(2);
+                powerGenerated = (duration * 1.2).toFixed(2);
+                break;
+            case 'Walking':
+                caloriesBurned = (duration * 7).toFixed(2);
+                powerGenerated = (duration * 0.8).toFixed(2);
+                break;
+        }
+
+        totalCalories += parseFloat(caloriesBurned);
+
+        if (i==count) {
+            const adjustedCalories = targetCalories - (totalCalories - parseFloat(caloriesBurned));
+            caloriesBurned = adjustedCalories.toFixed(2);
+        }
+
+        const entry = {
+            day: type === 'weekly' ? `Day ${i}` : undefined,
+            week: type === 'monthly' ? `Week ${i}` : undefined,
+            month: type === 'yearly' ? `Month ${i}` : undefined,
+            activity,
+            calories: caloriesBurned,
+            power: powerGenerated,
+            duration: `${duration} mins`
+        };
+        
+        data.push(entry);
+    }
+    
+    return data;
+};
+
+// Populate tables dynamically
+const populateTable = (tableId, data, columns) => {
+    const tableBody = document.getElementById(tableId);
+    tableBody.innerHTML = '';
+    
+    data.forEach((item) => {
+        const row = `<tr>${columns.map(col => `<td>${item[col] || 'N/A'}</td>`).join('')}</tr>`;
+        tableBody.innerHTML += row;
+    });
+};
+
+// Generate charts
+const generateCharts = (timeRange) => {
+    let dataForCharts = [];
+    
+    switch (timeRange) {
+        case 'weekly':
+            dataForCharts = weeklyData;
+            break;
+        case 'monthly':
+            dataForCharts = monthlyData;
+            break;
+        case 'yearly':
+            dataForCharts = yearlyData;
+            break;
+        default:
+            console.error('Invalid time range');
+            return;
+    }
+
+    const labels = dataForCharts.map((item) => item.day || item.week || item.month);
+    const caloriesData = dataForCharts.map((item) => parseFloat(item.calories));
+
+    // Update Line Chart
+    const lineCtx = document.getElementById('progressChart').getContext('2d');
+    
+    if (lineChart) lineChart.destroy();
+    
+    lineChart = new Chart(lineCtx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+              label: 'Calories Burned',
+              data: caloriesData,
+              borderColor: 'rgba(255, 87, 34, 1)',
+              backgroundColor: 'rgba(255, 87, 34, 0.2)',
+              borderWidth: 2,
+              tension: 0.4
+          }]
+      },
+      options:{
+          responsive:true,
+          plugins:{
+              legend:{display:true}
+          }
+      }
+   });
+
+   // Update Doughnut Chart
+   const doughnutCtx = document.getElementById('caloriesChart').getContext('2d');
+   
+   if (doughnutChart) doughnutChart.destroy();
+   
+   doughnutChart = new Chart(doughnutCtx, {
+       type:'doughnut',
+       data:{
+           labels,
+           datasets:[{
+               data:caloriesData,
+               backgroundColor:[
+                   'rgba(255,99,132,0.6)',
+                   'rgba(54,162,235,0.6)',
+                   'rgba(255,206,86,0.6)',
+                   'rgba(75,192,192,0.6)',
+                   'rgba(153,102,255,0.6)',
+                   'rgba(255,159,64,0.6)',
+                   'rgba(199,199,199,0.6)'
+               ]
+           }]
+       },
+       options:{
+           responsive:true,
+           plugins:{
+               legend:{display:true}
+           }
+       }
+   });
+};
+
+// Fetch data for cards from API
+const fetchCardData = async () => {
+   try{
+       const response=await fetch('https://liv1zkehi4.execute-api.us-east-1.amazonaws.com/wattify_api_stage/wattify_data');
+       const data=await response.json();
+       const responseBody=JSON.parse(data.body);
+
+       if(responseBody && Array.isArray(responseBody) && responseBody.length > 0){
+           const {power, energy, calories,distance}=responseBody[0];
+
+           // Update card values
+           document.getElementById('power').innerText=power?power.toFixed(2):'N/A';
+           document.getElementById('energy').innerText=energy?energy.toFixed(2):'N/A';
+           document.getElementById('calories').innerText=calories?calories.toFixed(2):'N/A';
+           document.getElementById('distance').innerText=distance?distance.toFixed(2):'N/A';
+       }else{
+           console.error('API response does not have the expected structure');
+       }
+   }catch(error){
+       console.error('Error fetching data for cards:',error);
+   }
+};
+
+// Initialize the dashboard
+const initializeDashboard=()=>{
+   weeklyData=generateRandomData(7,'weekly');
+   monthlyData=generateRandomData(4,'monthly');
+   yearlyData=generateRandomData(12,'yearly');
+
+   populateTable('weekly-table',weeklyData,['day','activity','calories','duration']);
+   populateTable('monthly-table',monthlyData,['week','calories','power','duration']);
+   populateTable('yearly-table',yearlyData,['month','calories','power','duration']);
+
+   generateCharts('weekly');
+   fetchCardData(); // Fetch and update card values
+};
+
+// Event listener for tab changes
+const updateCharts=(timeRange)=>{
+   generateCharts(timeRange);
+};
+
+// Initialize the dashboard when the page loads
+document.addEventListener('DOMContentLoaded',initializeDashboard);
+
+</script></body></html>
+

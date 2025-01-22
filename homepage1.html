@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cycling Game Home Screen</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="overlay">
+    <!-- Logo on the left -->
+    <div class="logo">
+      <img src="gamelogo.jpg" alt="Pedal Fury Logo" class="logo-img">
+      <p>"Ride Fast. Rule the Roads."</p>
+    </div>
+
+    <!-- Title and subtitle (Centered) -->
+    <div class="title">
+      <h1>Cycling Adventure</h1>
+      <p>Get ready for an exciting journey!</p>
+    </div>
+
+    <!-- Buttons on the right -->
+    <div class="menu">
+      <button id="play">Play</button>
+      <button id="settings">Settings</button>
+      <button id="dashboard">Dashboard</button>
+      <button id="garage">Garage</button>
+      <button id="leader">Leaderboard</button>
+      <button id="back">Back/Exit</button>
+    </div>
+  </div>
+
+  <script>
+    const playButton = document.getElementById('settings');
+    playButton.addEventListener('click',
+    function (){
+      window.location.href='setting.html';
+    } );
+
+    // Play button redirects to play.html
+    document.getElementById("play").addEventListener("click", function() {
+      window.location.href = "game.html"; // Link to play.html
+    });
+
+    // Settings button redirects to settings.html
+    // document.getElementById("settings").addEventListener("click", function() {
+    //   window.location.href = "extracted\settings.jpg"; // Link to settings.html
+    // });
+
+    // Dashboard button redirects to dashboard.html
+    document.getElementById("dashboard").addEventListener("click", function() {
+      window.location.href = "dashboard1.html"; // Link to dashboard.html
+    });
+
+    // Garage button redirects to garage.html
+    document.getElementById("garage").addEventListener("click", function() {
+      window.location.href = "garage.html"; // Link to garage.html
+    });
+
+    // Leaderboard button redirects to leaderboard.html
+    document.getElementById("leader").addEventListener("click", function() {
+      window.location.href = "leaderboard.html"; // Link to leaderboard.html
+    });
+
+    // Back/Exit button redirects to back.html or exits the game
+    document.getElementById("back").addEventListener("click", function() {
+      window.location.href = "back.html"; // Link to back.html (or implement exit functionality)
+    });
+  </script>
+</body>
+</html>
